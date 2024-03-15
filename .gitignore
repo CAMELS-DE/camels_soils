@@ -159,6 +159,6 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# in and out directories
-in/
-out/
+# input_data and output_data directories
+input_data/
+output_data/
