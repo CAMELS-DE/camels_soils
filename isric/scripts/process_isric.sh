@@ -34,9 +34,13 @@ echo "[$(date +%T)] Saved postprocessed ISRIC soil data for all CAMELS-DE statio
 
 # Copy the output data to the camelsp output directory
 echo "[$(date +%T)] Copying the extracted and postprocessed data to the camelsp output directory..."
-mkdir -p /camelsp/output_data/catchment_attributes_raw/
-cp -r /output_data/isric_processed/ /camelsp/output_data/catchment_attributes_raw/
+mkdir -p /camelsp/output_data/raw_catchment_attributes/soils/isric
+cp -r /output_data/isric_processed/* /camelsp/output_data/raw_catchment_attributes/soils/isric/
 echo "[$(date +%T)] Copied the extracted and postprocessed data to the camelsp output directory"
+
+# Copy scripts to /camelsp/output_data/scripts/catchments
+mkdir -p /camelsp/output_data/scripts/soils/isric/
+cp /output_data/scripts/* /camelsp/output_data/scripts/soils/isric/
 
 # Change permissions of the output data
 chmod -R 777 /camelsp/output_data/
