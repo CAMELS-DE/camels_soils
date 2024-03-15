@@ -64,7 +64,7 @@ def postprocess_isric():
         # Save the data
         df_result.to_csv(f"/output_data/isric_processed/{variable}_processed.csv", index=False)
 
-        print(f"{variable} --- Postprocessing finished.")
+        print(f"Variable: {variable} --- Postprocessing finished.")
 
 
 if __name__ == "__main__":
