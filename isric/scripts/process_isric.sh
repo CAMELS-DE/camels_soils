@@ -26,17 +26,19 @@ Rscript /scripts/02_extract_isric.R
 cp /scripts/02_extract_isric.R /output_data/scripts/02_extract_isric.R
 echo "[$(date +%T)] Saved extracted ISRIC soil data for all CAMELS-DE stations with 02_extract_isric.R"
 
-# Extract CORINE data
-# echo "[$(date +%T)] Extracting CORINE data..."
-# Rscript /scripts/02_extract_corine.R
-# cp /scripts/02_extract_corine.R /output_data/scripts/02_extract_corine.R
-# echo "[$(date +%T)] Saved extracted CORINE data for all CAMELS-DE stations with 02_extract_corine.R"
+# Postprocess extracted ISRIC data
+echo "[$(date +%T)] Postprocessing extracted ISRIC soil data..."
+python /scripts/03_postprocess_isric.py
+cp /scripts/03_postprocess_isric.py /output_data/scripts/03_postprocess_isric.py
+echo "[$(date +%T)] Saved postprocessed ISRIC soil data for all CAMELS-DE stations with 03_postprocess_isric.py"
 
-# # Save the extracted CORINE data to camelsp stations
-# python /scripts/03_save_corine_to_stations.py
-# cp /scripts/03_save_corine_to_stations.py /output_data/scripts/03_save_corine_to_stations.py
-# echo "[$(date +%T)] Saved extracted CORINE data to CAMELS-DE stations with 03_save_corine_to_stations.py"
+# Copy the output data to the camelsp output directory
+echo "[$(date +%T)] Copying the extracted and postprocessed data to the camelsp output directory..."
+mkdir -p /camelsp/output_data/catchment_attributes_raw/
+cp -r /output_data/isric_processed/ /camelsp/output_data/catchment_attributes_raw/
+echo "[$(date +%T)] Copied the extracted and postprocessed data to the camelsp output directory"
 
 # Change permissions of the output data
 chmod -R 777 /camelsp/output_data/
 chmod -R 777 /output_data/
+chmod -R 777 /input_data/
