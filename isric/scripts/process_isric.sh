@@ -38,7 +38,7 @@ mkdir -p /camelsp/output_data/raw_catchment_attributes/soils/isric
 cp -r /output_data/isric_processed/* /camelsp/output_data/raw_catchment_attributes/soils/isric/
 echo "[$(date +%T)] Copied the extracted and postprocessed data to the camelsp output directory"
 
-# Copy scripts to /camelsp/output_data/scripts/catchments
+# Copy scripts to /camelsp/output_data/scripts/soils/isric/
 mkdir -p /camelsp/output_data/scripts/soils/isric/
 cp /output_data/scripts/* /camelsp/output_data/scripts/soils/isric/
 
