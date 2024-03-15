@@ -10,6 +10,9 @@ def download_isric_data():
     # Variables to download
     variables = ["sand", "silt", "clay", "bdod", "cfvo", "soc"]
 
+    # Depths to download
+    depths = ["0-5cm", "5-15cm", "15-30cm", "30-60cm", "60-100cm"]
+
     # Only download for Germany (+ buffer)
     subsets = [('X', 1347207, 2452109), ('Y', 5194990, 6082404)]
 
@@ -20,6 +23,9 @@ def download_isric_data():
 
         # get the coverage ids, only load the mean (there is also percentiles and uncertainty)
         coverage_ids = [content for content in wcs.contents if variable in content and "mean" in content]
+
+        # filter the coverage ids by the depths
+        coverage_ids = [coverage_id for coverage_id in coverage_ids if any(depth in coverage_id for depth in depths)]
 
         # create the variable folder to store .tiffs if it does not exist
         if not os.path.exists(f"/input_data/isric/{variable}"):
