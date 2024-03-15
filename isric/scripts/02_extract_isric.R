@@ -44,10 +44,11 @@ for (variable in variables) {
     colnames(extracted_rast)[1] <- "camels_id"
 
     # Create folder to save the extracted data if it does not exist
-    dir.create(paste("/output_data/", variable, "/", sep = ""), showWarnings = FALSE)
+    dir.create(paste("/output_data/isric_extracted/", sep = ""), showWarnings = FALSE)
+    dir.create(paste("/output_data/isric_extracted/", variable, sep = ""), showWarnings = FALSE)
 
     # Save the extracted data
-    print(paste("Saving the extracted data to /output_data/", variable, "/", "isric_", variable, "_", depth, "_extracted.csv ...", sep = ""))
-    write.csv(extracted_rast, paste("/output_data/", variable, "/", "isric_", variable, "_", depth, "_extracted.csv", sep = ""), row.names = FALSE)
+    print(paste("Saving the extracted data to /output_data/isric_extracted/", variable, "/", "isric_", variable, "_", depth, "_extracted.csv ...", sep = ""))
+    write.csv(extracted_rast, paste("/output_data/isric_extracted/", variable, "/", "isric_", variable, "_", depth, "_extracted.csv", sep = ""), row.names = FALSE)
   }
 }
