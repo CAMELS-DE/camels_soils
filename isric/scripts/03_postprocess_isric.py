@@ -10,15 +10,15 @@ def postprocess_isric():
     - Aggregate and calculate a weighted average over depths:
         - 0-30 cm: 0-5 cm (5/30), 5-15 cm (10/30), 15-30 cm (15/30)
         - 30-100 cm: 30-60 cm (30/70), 60-100 cm (40/70)  
-    - Convert to common units:
-        | **Variable** | **Mapped unit** | **Conversation factor** | **Common unit**   |
-        |--------------|-----------------|-------------------------|-------------------|
-        | bdod         | cg/cm³          | 100                     | kg/dm³            |
-        | cfvo         | cm3/dm3 (vol‰)  | 10                      | cm3/100cm3 (vol%) |
-        | clay         | g/kg            | 10                      | g/100g (%)        |
-        | silt         | g/kg            | 10                      | g/100g (%)        |
-        | sand         | g/kg            | 10                      | g/100g (%)        |
-        | soc          | dg/kg           | 10                      | g/kg              |
+    - Convert to common units and rename the columns:
+        | **Variable** | **Mapped unit** | **Conversation factor** | **Common unit**   | **CAMELS-DE variable name** |
+        |--------------|-----------------|-------------------------|-------------------|-----------------------------|
+        | bdod         | cg/cm³          | 100                     | kg/dm³            | bulk_density                |
+        | cfvo         | cm3/dm3 (vol‰)  | 10                      | cm3/100cm3 (vol%) | coarse_fragments            |
+        | clay         | g/kg            | 10                      | g/100g (%)        | clay                        |
+        | silt         | g/kg            | 10                      | g/100g (%)        | silt                        |
+        | sand         | g/kg            | 10                      | g/100g (%)        | sand                        |
+        | soc          | dg/kg           | 10                      | g/kg              | soil_organic_carbon         |
 
     """
     # Load the data
@@ -53,9 +53,20 @@ def postprocess_isric():
         dfs = {}
         for depth, df in aggregated_data.items():
             # Add the depth to the column names
-            df.columns = [f"{column}_{depth.replace('-', '_')}" if column != "camels_id" else column for column in df.columns]
+            df.columns = [f"{depth.replace('-', '_')}_{column}" if column != "camels_id" else column for column in df.columns]
             # Save the dataframe
             dfs[depth] = df
+
+        # Add the camels variable names to the column names
+        for depth, df in dfs.items():
+            if variable in ["clay", "silt", "sand"]:
+                df.columns = [f"{variable}_{column}" if column != "camels_id" else column for column in df.columns]
+            elif variable == "bdod":
+                df.columns = [f"bulk_density_{column}" if column != "camels_id" else column for column in df.columns]
+            elif variable == "cfvo":
+                df.columns = [f"coarse_fragments_{column}" if column != "camels_id" else column for column in df.columns]
+            elif variable == "soc":
+                df.columns = [f"soil_organic_carbon_{column}" if column != "camels_id" else column for column in df.columns]
 
         # Concatenate the dataframes, keep only the first camels_id column
         df_result = pd.concat(dfs.values(), axis=1)
