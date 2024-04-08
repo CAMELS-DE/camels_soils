@@ -160,5 +160,6 @@ cython_debug/
 #.idea/
 
 # input_data and output_data directories
+!README.md
 input_data/
 output_data/
