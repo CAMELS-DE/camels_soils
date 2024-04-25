@@ -17,7 +17,7 @@ catchments <- sf::st_read("/output_data/catchments.gpkg")
 variables <- c("sand", "silt", "clay", "bdod", "cfvo", "soc")
 
 # depths
-depths <- c("0-5cm", "5-15cm", "15-30cm", "30-60cm", "60-100cm")
+depths <- c("0-5cm", "5-15cm", "15-30cm", "30-60cm", "60-100cm", "100-200cm")
 
 # Loop over the variables
 for (variable in variables) {

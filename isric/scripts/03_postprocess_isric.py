@@ -10,6 +10,7 @@ def postprocess_isric():
     - Aggregate and calculate a weighted average over depths:
         - 0-30 cm: 0-5 cm (5/30), 5-15 cm (10/30), 15-30 cm (15/30)
         - 30-100 cm: 30-60 cm (30/70), 60-100 cm (40/70)  
+        - 100-200 cm: no aggregation needed
     - Convert to common units and rename the columns:
         | **Variable** | **Mapped unit** | **Conversation factor** | **Common unit**   | **CAMELS-DE variable name** |
         |--------------|-----------------|-------------------------|-------------------|-----------------------------|
@@ -39,6 +40,8 @@ def postprocess_isric():
         aggregated_data["0-30cm"] = (data["0-5cm"].iloc[:,1:] * (5 / 30) + data["5-15cm"].iloc[:,1:] * (10 / 30) + data["15-30cm"].iloc[:,1:] * (15 / 30))
         # 30-100 cm
         aggregated_data["30-100cm"] = (data["30-60cm"].iloc[:,1:] * (30 / 70) + data["60-100cm"].iloc[:,1:] * (40 / 70))
+        # 100-200 cm
+        aggregated_data["100-200cm"] = data["100-200cm"].iloc[:,1:]
 
         # Convert to common units
         if variable == "bdod":

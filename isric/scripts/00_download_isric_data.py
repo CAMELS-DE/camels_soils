@@ -11,7 +11,7 @@ def download_isric_data():
     variables = ["sand", "silt", "clay", "bdod", "cfvo", "soc"]
 
     # Depths to download
-    depths = ["0-5cm", "5-15cm", "15-30cm", "30-60cm", "60-100cm"]
+    depths = ["0-5cm", "5-15cm", "15-30cm", "30-60cm", "60-100cm", "100-200cm"]
 
     # Only download for Germany (+ buffer)
     subsets = [('X', 1347207, 2452109), ('Y', 5194990, 6082404)]
