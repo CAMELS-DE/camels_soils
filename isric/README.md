@@ -3,7 +3,7 @@
 ## Description
 
 Dockerized tool to extract and process data from the ISRIC Soil Grids tiff files for CAMELS-DE.  
-A folder is created in the `output_data` folder for the results of each catchment, in which a .csv file is saved for each of the variables listed below. Output variables are weighted averages for the depths 0-30 cm (upper soil) and 30-100 cm (lower soil). Extracted variables are copied to the camelsp `output_data` directory, where other tools process the data further and organize it in the folder structure.
+A folder is created in the `output_data` folder for the results of each catchment, in which a .csv file is saved for each of the variables listed below. Output variables are weighted averages for the depths 0-30 cm, 30-100 cm and 100-200cm. Extracted variables are copied to the camelsp `output_data` directory, where other tools process the data further and organize it in the folder structure.
 
 ## Container
 
@@ -26,7 +26,7 @@ docker run -v ./input_data:/input_data -v ./output_data:/output_data -v ./script
 ## Output variables
 
 Various statistics such as min, mean, max, percentiles and standard deviation of the Soil Grids variables are calculated for the CAMELS-DE catchments.  
-The tool uses Soil Grid variables in depths 0-5 cm, 5-15 cm, 15-30 cm, 30-60 cm, 60-100 cm and 100-200 cm; we aggregate the results to the two depths 0-30 cm, 30-100 cm and 100-2ßß cm by calculating a weighted average.   
+The tool uses Soil Grid variables in depths 0-5 cm, 5-15 cm, 15-30 cm, 30-60 cm, 60-100 cm and 100-200 cm; we aggregate the results to the two depths 0-30 cm, 30-100 cm and 100-200 cm by calculating a weighted average.   
 Variables are then converted to the units used in CAMELS-DE as listed here:
 
 | **Soil Grids variable** | **Soil Grids unit** | **CAMELS-DE conversion factor** | **CAMELS-DE unit** | **CAMELS-DE variable name** |
