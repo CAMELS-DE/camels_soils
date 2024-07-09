@@ -18,18 +18,18 @@ RUN R -e "remotes::install_github('VForWaTer/json2aRgs')"
 # # remove json2aRgs tarball
 # RUN rm json2aRgs_0.3.0.tar.gz
 
-# Install R dependencies for corine
+# Install R dependencies for isric SoilGrids
 RUN apt-get install -y libudunits2-dev libgdal-dev libharfbuzz-dev libfribidi-dev
 RUN R -e "install.packages('exactextractr')"
 
-# Install R dependencies for copernicus_dem30
+# Install R dependencies for isric SoilGrids
 RUN apt-get install -y libudunits2-dev libgdal-dev libharfbuzz-dev libfribidi-dev
 RUN R -e "install.packages('exactextractr')"
 
 # install json2args for Python
 RUN pip install json2args==0.6.2
 
-# Install Python dependencies for copernicus_dem30
+# Install Python dependencies for isric SoilGrids
 RUN pip install geopandas==0.14.4 rasterio==1.3.9 numpy==1.26.4 OWSLib==0.29.3
 
 # create the tool input structure
