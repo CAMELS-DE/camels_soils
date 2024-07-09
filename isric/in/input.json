@@ -1,0 +1,10 @@
+{
+    "soil_attributes_isric": {
+        "parameters": {
+            "id_field_name_catchments": "id"
+        },
+        "data": {
+            "catchments": "/in/catchments.gpkg"
+        }
+    }
+}

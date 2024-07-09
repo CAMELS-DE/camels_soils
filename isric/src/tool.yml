@@ -1,0 +1,18 @@
+tools:
+  soil_attributes_isric:
+    title: Topographic Attributes from the ISRIC SoilGrids for CAMELS-DE
+    description: Process ISRIC SoilGrids data to extract soil attributes for CAMELS-DE.
+    version: 0.1
+    parameters:
+      id_field_name_catchments:
+        example: "gauge_id"
+        type: string
+        description: Property name in the catchments file that contains the catchment IDs.
+    data:
+      catchments:
+        example: in/catchments.gpkg
+        extension:
+         - .gpkg
+         - .geojson
+         - .shp
+        description: Geometry file containing catchments for which to extract topographic attributes.
