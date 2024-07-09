@@ -44,4 +44,6 @@ extract_isric <- function(catchments, id_field_name_catchments) {
     }
   print(paste(variable, "--- Extraction successful."))
   }
+  # set permissions
+  system("chmod -R 777 /out/isric_extracted")
 }
