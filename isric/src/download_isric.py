@@ -14,8 +14,10 @@ def download_isric_data(catchments: gpd.GeoDataFrame):
     # Variables to download
     variables = ["sand", "silt", "clay", "bdod", "cfvo", "soc"]
 
-    # Bounding box of catchments + a 10% buffer
-    min_x, min_y, max_x, max_y = catchments.total_bounds * 1.1
+    # Bounding box of catchments +- a 10% buffer
+    min_x, min_y, max_x, max_y = catchments.total_bounds
+    buffer_width, buffer_height = (max_x - min_x) * 0.1, (max_y - min_y) * 0.1
+    min_x, min_y, max_x, max_y = min_x - buffer_width, min_y - buffer_height, max_x + buffer_width, max_y + buffer_height
 
     # Only download for bounding box
     subsets = [('X', min_x, max_x), ('Y', min_y, max_y)]
