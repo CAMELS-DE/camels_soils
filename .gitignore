@@ -163,3 +163,5 @@ cython_debug/
 !README.md
 input_data/
 output_data/
+in/
+out/
