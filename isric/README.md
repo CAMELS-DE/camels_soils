@@ -17,10 +17,10 @@ docker build -t isric .
 
 Necessary Soild Grids input data is automatically downloaded when running the docker container.
 
-To run the container, the local `input_data`, `output_data`, `scripts` and `camelsp/output_data` directories have to be mounted inside the container:
+To run the container, the local `input_data`, `output_data` and `camelsp/output_data` directories have to be mounted inside the container:
 
 ```bash
-docker run -v ./input_data:/input_data -v ./output_data:/output_data -v ./scripts:/scripts -v /path/to/local/camelsp/output_data:/camelsp/output_data -it --rm isric
+docker run -v ./input_data:/input_data -v ./output_data:/output_data -v /path/to/local/camelsp/output_data:/camelsp/output_data -it --rm isric
 ```
 
 ## Output variables
