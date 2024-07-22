@@ -31,6 +31,7 @@ RUN apt-get install -y libudunits2-dev libgdal-dev libharfbuzz-dev libfribidi-de
 RUN R -e "install.packages('exactextractr')"
 
 # Change working directory
+COPY ./scripts /scripts
 WORKDIR /scripts
 
 # Run sh script to process ISRIC
